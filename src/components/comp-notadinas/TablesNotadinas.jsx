@@ -10,6 +10,8 @@ import moment from "moment-timezone";
 import $ from "jquery";
 import "datatables.net"; // Inti DataTables
 import "datatables.net-bs5"; // Bootstrap 5 DataTables
+import { createRoot } from "react-dom/client";
+import ExportPdfNotaDinas from "./ExportPdfNotaDinas";
 
 const TablesNotadinas = () => {
   const [data, setData] = useState([]);
@@ -81,6 +83,11 @@ const TablesNotadinas = () => {
   };
 
   const InisialisasiTable = () => {
+
+    let buttonSavePdf = document.createElement('div')
+    let root = createRoot(buttonSavePdf)
+    root.render(<ExportPdfNotaDinas data={data} />)
+
     InitTable("#example", {
       language: {
         info: "Halaman _PAGE_ dari _PAGES_",
@@ -103,7 +110,7 @@ const TablesNotadinas = () => {
             },
           },
         ],
-        topEnd: null,
+        topEnd: buttonSavePdf,
         bottomEnd: ["paging"],
       },
       scrollX: true,

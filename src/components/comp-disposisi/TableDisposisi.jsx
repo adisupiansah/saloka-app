@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import EditDisposisi from "./EditDisposisi";
 import GeneratePDF from "./GeneratePDF";
 import moment from "moment-timezone";
+import ExportPDFButton from "./ExportPdfButton";
 
 
 const TableDisposisi = () => {
@@ -26,6 +27,10 @@ const TableDisposisi = () => {
     let buatdisposisi = document.createElement("div");
     let root = createRoot(buatdisposisi);
     root.render(<ButtonSurat />);
+
+    let exportPDFContainer = document.createElement("div");
+    let exportPDFRoot = createRoot(exportPDFContainer);
+    exportPDFRoot.render(<ExportPDFButton data={data} />);
 
     InitTable("#example", {
       language: {
@@ -49,7 +54,7 @@ const TableDisposisi = () => {
             },
           },
         ],
-        topEnd: buatdisposisi,
+        topEnd: [buatdisposisi, exportPDFContainer],
       },
     });
   };

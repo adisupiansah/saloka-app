@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^6.0.1",
     "animate.css": "^4.1.1",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.7",
@@ -22,6 +21,7 @@
     "html2canvas": "^1.4.1",
     "jquery": "^3.7.1",
     "jspdf": "^2.5.2",
+    "jspdf-autotable": "^5.0.2",
     "moment-timezone": "^0.5.46",
     "multer": "^1.4.5-lts.1",
     "next": "^15.2.2",
