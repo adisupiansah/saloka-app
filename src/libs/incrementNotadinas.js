@@ -1,5 +1,5 @@
  export const incrementNomorNotaDinas = (lastnumber) => {
-    const format = /B\/ND-(\d+)\//;  // fokus penambahahan di  antara B/-ND
+    const format = /(\d+)\//;  // fokus penambahahan di  antara B/-ND
     const match = lastnumber.match(format); 
 
     // jika tidak ada match
@@ -11,5 +11,5 @@
     const padingNumber = String(number).padStart(2, "0"); // penambahan 0 di depan angka
 
     // ganti hanya baggian angka dalam format
-    return lastnumber.replace(format, `B/ND-${padingNumber}/`);
+    return lastnumber.replace(format, `${padingNumber}/`);
 }   

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 
 const InputDisposisi = () => {
@@ -15,6 +15,25 @@ const InputDisposisi = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDataDisposisi((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const fetchNumberDisposisi = async () => {
+    try {
+      const res = await fetch("/api/v1/disposisi/fetch");
+
+      if (res.ok) {
+        const data = await res.json();
+        setDataDisposisi((prev) => ({
+          ...prev,
+          no_disposisi:
+            data.no_disposisi || "tidak berhasil mengambil no disposisi",
+        }));
+      } else {
+        console.error("Gagal mengambil data", res.status);
+      }
+    } catch (error) {
+      console.error("Terjadi kesalahan", error);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -47,9 +66,9 @@ const InputDisposisi = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dataDisposisi),
       });
-      
+
       if (!response.ok) {
-        const errorData = await response.json();  // Ambil data error jika status tidak 200
+        const errorData = await response.json(); // Ambil data error jika status tidak 200
         Swal.fire({
           title: "Error",
           text: errorData.message || "Data gagal disimpan!",
@@ -61,7 +80,7 @@ const InputDisposisi = () => {
         });
         return;
       }
-      
+
       const result = await response.json();
       Swal.fire({
         title: "Berhasil",
@@ -72,7 +91,7 @@ const InputDisposisi = () => {
         color: "#D9D9D9",
         background: "#212529",
       });
-      
+
       // reset form setelah submit
       setDataDisposisi({
         tgl_surat: "",
@@ -83,7 +102,8 @@ const InputDisposisi = () => {
         type_disposisi: "",
       });
 
-     
+      // Ambil nomor disposisi terbaru jika data berhasil di kirimkan
+      await fetchNumberDisposisi();
     } catch (error) {
       console.error("Error:", error);
       Swal.fire({
@@ -93,6 +113,11 @@ const InputDisposisi = () => {
       });
     }
   };
+
+  useEffect(() => {
+    fetchNumberDisposisi();
+  }, []);
+
   return (
     <div className="input-disposisi">
       <div className="container">
@@ -157,18 +182,25 @@ const InputDisposisi = () => {
                   </select>
 
                   <div className="button-InputDisposisi d-flex justify-content-between flex-columns">
-                    <button className="btn col-md-5" type='submit'>submit</button>
-                    <button className="btn reset col-md-5" onClick={(e) => {
-                      e.preventDefault();
-                      setDataDisposisi({
-                        tgl_surat: "",
-                        no_disposisi: "",
-                        no_surat: "",
-                        perihal: "",
-                        satfung: "",
-                        type_disposisi: "",
-                      });
-                    }}>reset</button>
+                    <button className="btn col-md-5" type="submit">
+                      submit
+                    </button>
+                    <button
+                      className="btn reset col-md-5"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setDataDisposisi({
+                          tgl_surat: "",
+                          no_disposisi: "",
+                          no_surat: "",
+                          perihal: "",
+                          satfung: "",
+                          type_disposisi: "",
+                        });
+                      }}
+                    >
+                      reset
+                    </button>
                   </div>
                 </form>
               </div>
