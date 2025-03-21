@@ -24,6 +24,7 @@ export const useHooksLogout = () => {
           if (result.isConfirmed) {
             await signOut(auth); // Logout dari Firebase
             window.location.href = "/auth"; // Redirect ke halaman login
+            sessionStorage.removeItem("user");
           }
         })
       } catch (error) {

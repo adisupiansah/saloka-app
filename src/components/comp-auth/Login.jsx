@@ -41,6 +41,9 @@ const Login = () => {
         password
       );
 
+      // simpan user yang login ke sessionStorage
+      sessionStorage.setItem("user", JSON.stringify(userCredential.user));
+
       Swal.fire({
         icon: "success",
         title: "Login berhasil!",
@@ -56,7 +59,7 @@ const Login = () => {
       setMessage(error.message);
     }
   };
-
+ 
   return (
     <div className="container login">
       <div className="row">

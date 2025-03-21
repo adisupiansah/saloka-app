@@ -3,6 +3,7 @@ import "./globals.css";
 import Navigasibar from "@/components/Navigasi/Navigasibar";
 import { Roboto } from "next/font/google";
 import ProtectedLayout from "./ProtectedLayout";
+import AuthListener from "@/components/comp-auth/AuthListener";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
       <body cz-shortcut-listen="true" className={roboto.className}>
         <ProtectedLayout>
           <Navigasibar />
+          <AuthListener/>
           {children}
         </ProtectedLayout>
       </body>
