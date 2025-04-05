@@ -4,14 +4,14 @@ import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBaf9eo5oFVVqbuQ7P5P1HStIOlN1j3iXk",
-  authDomain: "sibalog-14716.firebaseapp.com",
-  projectId: "sibalog-14716",
-  storageBucket: "sibalog-14716.firebasestorage.app",
-  messagingSenderId: "766748854502",
-  appId: "1:766748854502:web:cf1fc55d30acf207035327",
-  measurementId: "G-3WTVQTJT1K",
-  databaseURL: "https://sibalog-14716-default-rtdb.firebaseio.com/"
+  apiKey: "AIzaSyA-hbojpwHk8eQSA-9qOhlu7-020d3ivAY",
+  authDomain: "sibalog-7d685.firebaseapp.com",
+  databaseURL: "https://sibalog-7d685-default-rtdb.firebaseio.com",
+  projectId: "sibalog-7d685",
+  storageBucket: "sibalog-7d685.firebasestorage.app",
+  messagingSenderId: "279144653404",
+  appId: "1:279144653404:web:c4960d7a22d9ab1872bc99",
+  measurementId: "G-21TJTVK00C"
 };
 
 // Initialize Firebase
