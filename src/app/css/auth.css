@@ -1,0 +1,98 @@
+:root {
+    --background: #181818;
+    --blue-color: #2666cf;
+    --red-color: #c62e2e;
+    --green-color: #72bf78;
+    --yellow-color: #fabc3f;
+    --white-color: #ffffff;
+    --black-color: #1e1e1e;
+    --grey-color: #D9D9D9;
+  }
+  .auth-body {
+    background-color: var(--black-color); /* Warna background khusus */
+  }
+  
+  .auth-body * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+
+
+/* COMPONENTS LOGIN */
+
+.login input{
+    margin-top: 1rem;
+    background-color: var(--grey-color);
+    padding: 10px;
+}
+.login input:focus{
+    border: 1px solid var(--red-color);
+    background-color: var(--grey-color);
+    color: var(--black-color);
+    box-shadow: 0 0 5px 2px rgba(198, 46, 46, 0.774);
+    transition: ease-in 0.2s;
+}
+.login .btn-login{
+    background-color: var(--red-color);
+    margin-top: 2rem;
+    border-radius: 5px;
+    color: var(--white-color);
+}
+.login .btn-login:hover{
+    background-color: var(--white-color);
+    color: var(--black-color);
+    border: 1px solid var(--red-color);
+
+}
+
+.login .card{
+    background: var(--black-color);
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+}
+.login h3,p {
+    color: var(--white-color);
+}
+.login h3 {
+    font-size: 20px;
+    margin-top: 1rem;
+}
+.login p {
+    font-size: 16px;
+
+}
+
+/* AUTH - REGISTER */
+.register .card {
+    background: var(--black-color);
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+}
+.register h2{
+    color: var(--white-color);
+}
+
+.register input{
+    background: var(--grey-color);
+    padding: 10px;
+    margin-top: 1rem;
+}
+.register input:focus{
+    border: 2px solid var(--yellow-color);
+    background-color: var(--grey-color);
+    color: var(--black-color);
+    box-shadow: none;
+    transition: ease-in-out 0.2s;
+}
+
+.register .btn-register{
+    background-color: var(--yellow-color);
+    margin-top: 2rem;
+    border-radius: 5px;
+    color: var(--black-color);
+}
+.register .btn-register:hover{
+    background-color: var(--white-color);
+    color: var(--black-color);
+    border: 1px solid var(--yellow-color);
+}
