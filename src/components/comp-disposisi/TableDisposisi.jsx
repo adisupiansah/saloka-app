@@ -8,17 +8,20 @@ import EditDisposisi from "./EditDisposisi";
 import GeneratePDF from "./GeneratePDF";
 import moment from "moment-timezone";
 import ExportPDFButton from "./ExportPdfButton";
-
+import SavePdfMonthYear from "./SavePdfMonthYear";
 
 const TableDisposisi = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editData, setEditData] = useState(null);
+  const [filteredData, setFilteredData] = useState([]);
+  const [selectedMonth, setSelectedMonth] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
 
   const ButtonSurat = () => {
     return (
       <Link href="/disposisi/input" className="btn buat-disposisi">
-        input disposisi
+        Input disposisi
       </Link>
     );
   };
@@ -30,6 +33,10 @@ const TableDisposisi = () => {
     let exportPDFContainer = document.createElement("div");
     let exportPDFRoot = createRoot(exportPDFContainer);
     exportPDFRoot.render(<ExportPDFButton getFilteredData={getFilteredData} />);
+
+    let savePdfMonthYear = document.createElement('div')
+    let savePdfMonthYearRoot = createRoot(savePdfMonthYear)
+    savePdfMonthYearRoot.render(  <SavePdfMonthYear data={data} />)
 
     InitTable("#example", {
       language: {
@@ -53,7 +60,7 @@ const TableDisposisi = () => {
             },
           },
         ],
-        topEnd: [buatdisposisi, exportPDFContainer],
+        topEnd: [savePdfMonthYear, buatdisposisi, exportPDFContainer],
       },
     });
   };
@@ -75,7 +82,7 @@ const TableDisposisi = () => {
       };
     });
     return filteredData;
-  }
+  };
 
   const ambilDataDisposisi = async () => {
     try {
@@ -144,9 +151,9 @@ const TableDisposisi = () => {
   useEffect(() => {
     if (!loading && data.length > 0) {
       // Inisialisasi DataTables setelah data tersedia
-      const table =  DataTables();
+      const table = DataTables();
       if (table) {
-        table.destroy()
+        table.destroy();
       }
     }
   }, [loading, data]);
@@ -200,7 +207,8 @@ const TableDisposisi = () => {
           <div className="row">
             <div className="col">
               <div className="card">
-                <div className="card-body table-responsive">
+                <div className="card-body table-responsive table-hover">
+
                   {loading ? (
                     <p>Loading...</p>
                   ) : (
@@ -226,37 +234,45 @@ const TableDisposisi = () => {
                         {data.map((item, index) => {
                           // Konversi waktu UTC ke waktu Jakarta
                           const utcDate = new Date(item.createdAt);
-                          const waktuJakarta = moment(utcDate).tz('Asia/Jakarta').format( 'DD-MM-YYYY - HH:mm:ss');
-                          
+                          const waktuJakarta = moment(utcDate)
+                            .tz("Asia/Jakarta")
+                            .format("DD-MM-YYYY - HH:mm:ss");
+
                           const tglSurat = new Date(item.tgl_surat);
-                          const tglSuratFormatted = moment(tglSurat).format("DD-MM-YYYY");
-                          
+                          const tglSuratFormatted =
+                            moment(tglSurat).format("DD-MM-YYYY");
+
                           return (
                             <tr key={item.id}>
-                            <td>{index + 1}</td>
-                            <td>{tglSuratFormatted}</td>
-                            <td>{item.no_disposisi}</td>
-                            <td>{item.no_surat}</td>
-                            <td>{item.perihal}</td>
-                            <td>{item.satfung}</td>
-                            <td>{waktuJakarta}</td>
-                            <td>{item.type_disposisi}</td>
-                            <td>
-                             <GeneratePDF id={item.id} />
-                            </td>
-                            <td>
-                              <button className="btn btn-sm btn-editdisposisi col-md-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick={() => handleEditData(item.id)}>
-                                Edit
-                              </button>
-                              <button
-                                className="btn btn-sm btn-deletedisposisi col-md-12 mt-2"
-                                onClick={() => handleDeleteData(item.id)}
-                              >
-                                Delete
-                              </button>
-                            </td>
-                          </tr>
-                          )
+                              <td>{index + 1}</td>
+                              <td>{tglSuratFormatted}</td>
+                              <td>{item.no_disposisi}</td>
+                              <td>{item.no_surat}</td>
+                              <td>{item.perihal}</td>
+                              <td>{item.satfung}</td>
+                              <td>{waktuJakarta}</td>
+                              <td>{item.type_disposisi}</td>
+                              <td>
+                                <GeneratePDF id={item.id} />
+                              </td>
+                              <td>
+                                <button
+                                  className="btn btn-sm btn-editdisposisi col-md-12"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#staticBackdrop"
+                                  onClick={() => handleEditData(item.id)}
+                                >
+                                  Edit
+                                </button>
+                                <button
+                                  className="btn btn-sm btn-deletedisposisi col-md-12 mt-2"
+                                  onClick={() => handleDeleteData(item.id)}
+                                >
+                                  Delete
+                                </button>
+                              </td>
+                            </tr>
+                          );
                         })}
                       </tbody>
                     </table>

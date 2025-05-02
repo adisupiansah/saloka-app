@@ -127,59 +127,82 @@ const InputDisposisi = () => {
               <div className="card-body">
                 <h2 className="card-title text-center">INPUT DISPOSISI</h2>
                 <form onSubmit={handleSubmit}>
-                  <input
-                    type="date"
-                    className="form-control"
-                    placeholder="Tanggal surat"
-                    name="tgl_surat"
-                    value={dataDisposisi.tgl_surat}
-                    onChange={handleChange}
-                  />
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Nomor disposisi"
-                    name="no_disposisi"
-                    value={dataDisposisi.no_disposisi}
-                    onChange={handleChange}
-                  />
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Nomor surat"
-                    name="no_surat"
-                    value={dataDisposisi.no_surat}
-                    onChange={handleChange}
-                  />
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Hal..."
-                    name="perihal"
-                    value={dataDisposisi.perihal}
-                    onChange={handleChange}
-                  />
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Satfung"
-                    name="satfung"
-                    value={dataDisposisi.satfung}
-                    onChange={handleChange}
-                  />
+                  <div className="form-group">
+                    <label htmlFor="tanggal" className="text-white">Tanggal surat:</label>
+                      <input
+                        type="date"
+                        className="form-control"
+                        placeholder="Tanggal surat"
+                        name="tgl_surat"
+                        value={dataDisposisi.tgl_surat}
+                        onChange={handleChange}
+                      />
+                  </div>
 
-                  <select
-                    className="form-select"
-                    aria-label="Default select example"
-                    name="type_disposisi"
-                    value={dataDisposisi.type_disposisi}
-                    onChange={handleChange}
-                  >
-                    <option value="">Pilih Type Nota Dinas</option>
-                    <option value="disposisi biasa">disposisi biasa</option>
-                    <option value="disposisi BMP">disposisi BMP</option>
-                    <option value="disposisi Harwat">disposisi Harwat</option>
-                  </select>
+                  <div className="form-group mt-3">
+                    <label htmlFor="no_disposisi" className="text-white">Nomor disposisi: <span className="text-red-500">*cukup diubah bulan / tahun saja nomor sudah otomatis</span></label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Nomor disposisi"
+                      name="no_disposisi"
+                      value={dataDisposisi.no_disposisi}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="form-group mt-3">
+                    <label htmlFor="no_surat" className="text-white">Nomor surat:</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Nomor surat"
+                      name="no_surat"
+                      value={dataDisposisi.no_surat}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="form-group mt-3">
+                    <label htmlFor="perihal" className="text-white">Hal:</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Hal..."
+                      name="perihal"
+                      value={dataDisposisi.perihal}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="form-group mt-3">
+                    <label htmlFor="satfung" className="text-white">Ka. Satfung:</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Ka. Satfung..."
+                      name="satfung"
+                      value={dataDisposisi.satfung}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="form-group mt-3">
+                    <label htmlFor="type_disposisi" className="text-white">Type disposisi:</label>
+                    <select
+                      className="form-select"
+                      aria-label="Default select example"
+                      name="type_disposisi"
+                      value={dataDisposisi.type_disposisi}
+                      onChange={handleChange}
+                    >
+                      <option value="">Pilih Type Nota Dinas</option>
+                      <option value="disposisi biasa">disposisi biasa</option>
+                      <option value="disposisi BMP">disposisi BMP</option>
+                      <option value="disposisi Harwat">disposisi Harwat</option>
+                    </select>
+                  </div>
+
+
 
                   <div className="button-InputDisposisi d-flex justify-content-between flex-columns">
                     <button className="btn col-md-5" type="submit">

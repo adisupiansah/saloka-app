@@ -75,7 +75,7 @@ const ExportPDFButton = ({ getFilteredData }) => {
 
   return (
     <button onClick={handleExportPDF} className="btn btn-deletedisposisi">
-      Simpan PDF
+      Save PDF
     </button>
   );
 };
