@@ -2,20 +2,21 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import { getFirestore } from "firebase/firestore";
+
 const firebaseConfig = {
-  apiKey: "AIzaSyA-hbojpwHk8eQSA-9qOhlu7-020d3ivAY",
-  authDomain: "sibalog-7d685.firebaseapp.com",
-  databaseURL: "https://sibalog-7d685-default-rtdb.firebaseio.com",
-  projectId: "sibalog-7d685",
-  storageBucket: "sibalog-7d685.firebasestorage.app",
-  messagingSenderId: "279144653404",
-  appId: "1:279144653404:web:c4960d7a22d9ab1872bc99",
-  measurementId: "G-21TJTVK00C"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID 
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
+export const dbFirestore = getFirestore(app);
 export const auth = getAuth(app);

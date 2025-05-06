@@ -2,29 +2,21 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { auth } from "@/libs/Firebase";
-import { onAuthStateChanged } from "firebase/auth";
 
 const ProtectedLayout = ({ children }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
-
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      const isVerified = sessionStorage.getItem('verified') === 'true';
-      
-      if (user && !isVerified) {
-        router.push('/auth?step=2');
-
-      } else if (!user) {
-        router.push('/auth');
-
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (!user) {
+        router.push("/auth"); // Redirect ke /auth jika belum login
       }
-      setLoading(false)
+      setLoading(false);
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [router]);
 
   if (loading) {
     return (

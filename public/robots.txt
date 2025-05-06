@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://saloka.vercel.app
+
+# Sitemaps
+Sitemap: https://saloka.vercel.app/sitemap.xml
