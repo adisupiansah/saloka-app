@@ -2,6 +2,8 @@ import { dbFirestore } from "@/libs/Firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { createTransport } from "nodemailer";
 import cryptoRandomString from 'crypto-random-string';
+import VerificationCodeEmail from "@/components/react-email/EmailMessage";
+import { render } from "@react-email/render";
 
 export async function POST(request) {
   const { email } = await request.json();
@@ -34,17 +36,14 @@ export async function POST(request) {
       },
     });
 
+    const htmlTemplate = await render(<VerificationCodeEmail code={code} />)
+
     // Kirim email
     await transporter.sendMail({
       from: `SALOKA <${process.env.EMAIL_USER}>`,
       to: email,
       subject: "Kode Verifikasi SALOKA",
-      html: `
-        <h2>Kode Verifikasi Anda</h2>
-        <p>Gunakan kode berikut untuk menyelesaikan login:</p>
-        <h1 style="color: #72bf78;">${code}</h1>
-        <p>Kode ini berlaku 10 menit</p>
-      `,
+      html: htmlTemplate,
     });
 
     return new Response(JSON.stringify({ success: true }), {

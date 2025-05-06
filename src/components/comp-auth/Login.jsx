@@ -134,6 +134,8 @@ useEffect(() => {
         title: "Verifikasi Berhasil!",
         showConfirmButton: false,
         timer: 1500,
+        background: "#1e1e1e",
+        color: "#D9D9D9",
       }).then(() => {
         router.push("/");
       });
@@ -270,7 +272,7 @@ useEffect(() => {
                     ) : (
                       // Form verifikasi kode
                       <div className="verification-form">
-                        <h4>Verifikasi Email</h4>
+                        <h4 className='text-white'>Verifikasi Email</h4>
                         <p>Kami telah mengirim kode ke {email}</p>
                         <form onSubmit={handleVerifyCode}>
                           <input
@@ -283,20 +285,23 @@ useEffect(() => {
                             }
                             maxLength={6}
                           />
-                          <div className="countdown">
+                          <div className="countdown text-white">
                             {formatTime(countdown)}
                           </div>
-                          <button type="submit" className="btn btn-login">
-                            Verifikasi
-                          </button>
-                          <button
-                            type="button"
-                            className="btn btn-resend col-md-12"
-                            onClick={handleSendCode}
-                            disabled={countdown > 0 || isResending}
-                          >
-                            {isResending ? "Mengirim..." : "Kirim Ulang Kode"}
-                          </button>
+                          <div className="flex justify-center items-center gap-3">
+                            <button type="submit" className="btn btn-login col-md-4">
+                                Verifikasi
+                              </button>
+                              <button
+                                type="button"
+                                className="btn btn-kirimUlang col-md-4"
+                                onClick={handleSendCode}
+                                disabled={countdown > 0 || isResending}
+                              >
+                                {isResending ? "Mengirim..." : "Kirim Ulang Kode"}
+                              </button>
+
+                          </div>
                         </form>
                       </div>
                     )}
